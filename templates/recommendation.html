@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>  
+<head>
+  <link rel="stylesheet" href="./default.css">
+</head>
+
+<body>
+    <h1>Profile Recommender Form</h1>
+    
+    <section id="prof-form">
+        <label for="doc_id">Document ID:</label>
+        <input type="text" id="doc_id"><br><br>        
+        
+        <button type="button" id="rec-button" onclick="getProfRec()">Get Recommendation</button>
+        
+    </section>
+    
+    <section id="rec-results">
+      <h2>Profile Recommendation Results:</h2>
+      <div id="rec-list"></div>
+    </section>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function getProfRec() {
+          const xhrProfRec = new XMLHttpRequest();
+          const urlProfRec = "http://127.0.0.1:5000/ProfRec" ;
+          const paramsProfRec = `doc_id=${document.getElementById('doc_id').value}`;
+          // &O_score=${document.getElementById('O_score').value}&C_score=${document.getElementById('C_score').value}&E_score=${document.getElementById('E_score').value}&A_score=${document.getElementById('A_score').value}&N_score=${document.getElementById('N_score').value}
+
+          xhrProfRec.open("POST", urlProfRec, true);
+          xhrProfRec.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhrProfRec.onreadystatechange = function() {
+              if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                  const responseProfRec = JSON.parse(xhrProfRec.responseText);
+
+                  const resultDiv = document.getElementById("rec-list");
+                  resultDiv.innerHTML = "";
+
+                  responseProfRec.forEach(line => {
+                      const lineDiv = document.createElement("div");
+                      lineDiv.innerText = line;
+                      resultDiv.appendChild(lineDiv);
+                  });
+              }
+          };
+          xhrProfRec.send(paramsProfRec);
+
+        }
+
+        // Get the input field
+        var input = document.getElementById("doc_id");
+
+        // Execute a function when the user presses a key on the keyboard
+        input.addEventListener("keypress", function(event) {
+          // If the user presses the "Enter" key on the keyboard
+          if (event.key === "Enter") {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            document.getElementById("rec-button").click();
+          }
+        });         
+    </script>
+
+
+</body>
+</html> 

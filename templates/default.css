@@ -1,0 +1,99 @@
+input:invalid + span::after {
+  content: "✖";
+  padding-left: 5px;
+}
+
+input:valid + span::after {
+  content: "✓";
+  padding-left: 5px;
+}
+
+.image-container {
+  position: relative;
+  width: 300px; 
+  height: 200px; 
+  background-color: purple; 
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom: 1px solid #ccc;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-bottom: 2px solid purple;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.quote-container {
+  height: 50px;
+  background-color: purple;
+  padding: 0.5rem;
+  text-align: center;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.quote-container p {
+  margin: 0;
+  color: white;
+}
+
+
+#quote {
+  text-align: relative;
+  margin-bottom: 10px;
+}
+
+.like-container {
+  position: absolute;
+  top: 18px; /* 距离顶部的距离 */
+  right: -115px; /* 距离右侧的距离 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+  #like-icon {
+    width: 24px;
+    height: 24px;
+    fill: grey;
+}
+
+/* .like-button:before {
+  content: "";
+  position: absolute;
+  top: -20px; /* 距离爱心上方的距离 */
+  /* right: -20px;
+  width: 50px; 
+  height: 50px; 
+  background-image: url('your-gif-url');
+  background-size: cover;
+}  */
+
+
+#user-info {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+}
+
+#user-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-bottom: -10px;
+}
+
+#user-info p {
+  position: relative;
+  top: 0px;
+  font-size: 16px;
+  color: #fff;
+}
